@@ -18,7 +18,9 @@ public func day1(_ inputs: [Int], windowSize: Int = 1) -> Int {
     var sum = 0
     for value in inputs {
         if window.count == windowSize {
-            let newSum = sum - window.remove(at: 0) + value
+            // Array is a very bad queue for large window sizes
+            // since removeFirst() is O(n), but it'll do for now
+            let newSum = sum - window.removeFirst() + value
             if newSum > sum {
                 retval += 1
             }
